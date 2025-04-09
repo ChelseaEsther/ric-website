@@ -31,6 +31,8 @@ body {
     line-height: 1.6;
     color: var(--text-color);
     background-color: #ffffff;
+    position: relative;
+    padding-top: 0; /* Changed from 150px to allow overlay */
 }
 
 h1, h2, h3, h4, h5, h6 {
@@ -136,7 +138,7 @@ a:hover {
 /*Header & Navigation*/
 .top-bar {
     background-color: var(--primary);
-    color: white;
+    /* color: white; */
     padding: 10px 0;
     font-size: 1rem;
     display: flex;
@@ -169,8 +171,17 @@ a:hover {
     margin-left: 20px;
 }
 
-.contact-info i {
+contact-info i {
     margin-right: 5px;
+}
+
+/* Header section */
+.banner {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    z-index: 1000;
 }
 
 header {
@@ -178,12 +189,20 @@ header {
     justify-content: space-between;
     align-items: center;
     padding: 20px 2rem;
-    background-color: white;
-    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+    background-color: transparent; /* Changed to transparent */
+    box-shadow: none; /* Removed shadow initially */
+    max-height: 12vh;
+    overflow: hidden;
+    transition: var(--transition);
 }
 
 .logo img {
-    height: 70px;
+    height: 85px;
+    filter: brightness(0) invert(1); /* Make logo white */
+}
+
+.scrolled .logo img {
+    filter: none; /* Return to original colors when scrolled */
 }
 
 nav ul {
@@ -196,7 +215,7 @@ nav ul li {
 }
 
 nav ul li a {
-    color: var(--dark-color);
+    color: white; /* Changed to white */
     font-weight: 550;
     padding: 10px 0;
     position: relative;
@@ -209,7 +228,7 @@ nav ul li a::after {
     left: 0;
     width: 0;
     height: 2px;
-    background-color: var(--primary);
+    background-color: white; /* Changed to white */
     transition: var(--transition);
 }
 
@@ -221,9 +240,44 @@ nav ul li a:hover::after {
     width: 100%;
 }
 
+.scrolled header {
+    background-color: white;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+}
+
+.scrolled nav ul li a {
+    color: var(--dark-color);
+}
+
+.scrolled nav ul li a::after {
+    background-color: var(--primary);
+}
+
+.donate_button .btn.primary-btn {
+    background-color: transparent;
+    color: white;
+    border: 2px solid white;
+}
+
+.donate_button .btn.primary-btn:hover {
+    background-color: white;
+    color: var(--primary);
+}
+
+.scrolled .donate_button .btn.primary-btn {
+    background-color: var(--primary);
+    color: white;
+    border: 2px solid var(--primary);
+}
+
+.scrolled .donate_button .btn.primary-btn:hover {
+    background-color: transparent;
+    color: var(--primary);
+}
+
 /*HERO SECTION*/
 .hero {
-    height: 85vh;
+    height: 100vh;
     background-image: linear-gradient(rgba(0,0,0,0.5), rgba(0,0,0,0.5)), url('images/1b4e04968969d8f5ae3fa2997388261c.jpg');
     background-size: cover;
     background-position: center;
@@ -233,6 +287,7 @@ nav ul li a:hover::after {
     justify-content: center;
     text-align: center;
     position: relative;
+    /* padding-top: 0px; Added padding to prevent content from being hidden behind banner */
 }
 
 .hero-content {
@@ -552,6 +607,7 @@ footer {
         align-items: center;
         text-align: center;
         padding: 10px;
+        position: sticky;
     }
     
     .event_countdown {
@@ -654,11 +710,6 @@ footer {
         margin: 5px 10px;
     }
 }
-
-
-
-
-
 
 
 

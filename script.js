@@ -1,5 +1,6 @@
 // Restored in Christ UK - Main JavaScript
 
+// Add this to your DOMContentLoaded event handler
 document.addEventListener('DOMContentLoaded', function () {
     // Update copyright year
     document.getElementById('current-year').textContent = new Date().getFullYear();
@@ -15,6 +16,9 @@ document.addEventListener('DOMContentLoaded', function () {
 
     // Initialize scroll animations
     initScrollAnimations();
+    
+    // Initialize scroll effect for navigation
+    initScrollEffect();
 });
 
 /**
@@ -126,5 +130,25 @@ function initMobileMenu() {
             }
         `;
         document.head.appendChild(style);
+    }
+}
+
+/**
+ * Handle navigation scroll effect
+ */
+function initScrollEffect() {
+    const banner = document.querySelector('.banner');
+    
+    window.addEventListener('scroll', function() {
+        if (window.scrollY > 100) {
+            document.body.classList.add('scrolled');
+        } else {
+            document.body.classList.remove('scrolled');
+        }
+    });
+    
+    // Check initial scroll position (in case page is refreshed while scrolled)
+    if (window.scrollY > 100) {
+        document.body.classList.add('scrolled');
     }
 }
